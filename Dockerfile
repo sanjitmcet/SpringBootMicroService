@@ -1,3 +1,5 @@
 FROM openjdk:8-jdk-alpine
-ADD /demo.jar /app.jar
-ENTRYPOINT ["java","-jar","demo.jar"]
+VOLUME /tmp
+ARG JAR_FILE
+ADD ${JAR_FILE} SpringService.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/SpringService.jar"]
